@@ -1,0 +1,33 @@
+//---------------------------------------------------------------------------
+
+#ifndef MAIN_H
+#define MAIN_H
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <ExtCtrls.hpp>
+#include <Menus.hpp>
+#include "defination.h"
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+        TMainMenu *MainMenu1;
+        TMenuItem *Play1;
+        TMenuItem *N1;
+        TMenuItem *N2;
+        TLabel *Score;
+        TLabel *ScoreText;
+        TLabel *Endlb;
+        void __fastcall N1Click(TObject *Sender);
+        void __fastcall N2Click(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+        __fastcall TForm1(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+#endif // MAIN_H

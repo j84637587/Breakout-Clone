@@ -1,0 +1,59 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
+#include <vcl.h>
+#include "Main.h"
+#pragma hdrstop
+
+class Player
+{
+private:           // User declarations
+    int direction; // 移動方向, 1 右, -1 左
+    int min_x;     // 最左座標
+    int max_x;     // 最右座標
+    TShape *ts;
+
+public: // User declarations
+    // __fastcall TForm1(TComponent *Owner);
+    Player();
+    Player(TForm1 *, int, int);
+    ~Player();
+    void Player::Frame(bool);
+    void Player::setWidth(int);
+};
+
+Player::Player() {}
+
+Player::Player(TForm1 *Form, int min_x, int max_x)
+{
+    this->min_x = min_x;
+    this->max_x = max_x;
+    direction = 1;
+    ts = new TShape(Form);
+    // ts->Shape=stCircle;
+    ts->Parent = Form;
+    ts->Brush->Color = (TColor)random(0xffffff); // clRed
+    ts->Height = 10;
+    ts->Width = 80;
+    ts->Top = 590;
+}
+
+Player::~Player()
+{
+    delete ts;
+}
+
+void Player::setWidth(int w)
+{
+    ts->Width = w;
+}
+
+void Player::Frame(bool isLeft)
+{
+    if(!isLeft && ts->Left+ts->Width+5<=max_x+1)
+        ts->Left += 5;
+    else if (isLeft && ts->Left-5>=min_x)
+        ts->Left -= 5;
+}
+
+#endif // PLAYER_H
